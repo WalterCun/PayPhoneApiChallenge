@@ -1,0 +1,6 @@
+@PayPhoneApiChallenge_HostAddress = http://localhost:5194
+
+GET {{PayPhoneApiChallenge_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

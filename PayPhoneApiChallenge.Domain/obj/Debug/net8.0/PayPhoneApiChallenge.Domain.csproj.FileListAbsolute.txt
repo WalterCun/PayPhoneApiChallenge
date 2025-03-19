@@ -1,0 +1,12 @@
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\bin\Debug\net8.0\PayPhoneApiChallenge.Domain.deps.json
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\bin\Debug\net8.0\PayPhoneApiChallenge.Domain.dll
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\bin\Debug\net8.0\PayPhoneApiChallenge.Domain.pdb
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\PayPhoneApiChallenge.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\PayPhoneApiChallenge.Domain.AssemblyInfoInputs.cache
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\PayPhoneApiChallenge.Domain.AssemblyInfo.cs
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\PayPhoneApiChallenge.Domain.csproj.CoreCompileInputs.cache
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\PayPhoneApiChallenge.Domain.sourcelink.json
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\PayPhoneApiChallenge.Domain.dll
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\refint\PayPhoneApiChallenge.Domain.dll
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\PayPhoneApiChallenge.Domain.pdb
+D:\Coders\PayPhoneApiChallenge\PayPhoneApiChallenge.Domain\obj\Debug\net8.0\ref\PayPhoneApiChallenge.Domain.dll
