@@ -24,7 +24,7 @@ public class WalletService(PayPhoneDbContext payPhoneDbContext) : IWalletService
     public async Task<WalletDto> GetByIdAsync(int id)
     {
         var wallet = await payPhoneDbContext.Wallets.FindAsync(id);
-        if (wallet == null) return null;
+        if (wallet is null) return null;
 
         return new WalletDto
         {
@@ -38,6 +38,19 @@ public class WalletService(PayPhoneDbContext payPhoneDbContext) : IWalletService
     }
     public async Task<WalletDto> CreateAsync(CreateWalletDto dto)
     {
+        if (string.IsNullOrWhiteSpace(dto.DocumentId))
+            throw new ArgumentException("El DocumentId es obligatorio.");
+
+        if (string.IsNullOrWhiteSpace(dto.Name))
+            throw new ArgumentException("El Name es obligatorio.");
+
+        // Verificar si ya existe una billetera con el mismo DocumentId
+        var exists = await payPhoneDbContext.Wallets
+            .AnyAsync(w => w.DocumentId == dto.DocumentId);
+        if (exists)
+            throw new InvalidOperationException("Ya existe una billetera con el DocumentId proporcionado.");
+
+        // crear la nueva billetera
         var wallet = new Wallet
         {
             DocumentId = dto.DocumentId,
