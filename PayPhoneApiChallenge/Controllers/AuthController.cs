@@ -13,7 +13,7 @@ namespace PayPhoneApiChallenge.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto dto)
         {
-            // En un escenario real, validarás las credenciales en una base de datos
+            // Validar "credenciales"
             if (dto.Username != "admin" || dto.Password != "admin")
                 return Unauthorized(new { message = "Credenciales inválidas" });
 

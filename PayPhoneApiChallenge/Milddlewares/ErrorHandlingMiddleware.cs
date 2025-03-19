@@ -22,9 +22,8 @@ public class ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandling
 
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
-        string message = "Ocurrió un error inesperado.";
-        string? errorCode = null;
+        var statusCode = HttpStatusCode.InternalServerError;
+        var message = "Ocurrió un error inesperado.";
 
         // Mapear las excepciones a códigos HTTP y mensajes
         switch (exception)
@@ -32,25 +31,16 @@ public class ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandling
             case NotFoundException:
                 statusCode = HttpStatusCode.NotFound;
                 message = exception.Message;
-                errorCode = "NOT_FOUND";
                 break;
 
             case BadRequestException:
-                statusCode = HttpStatusCode.BadRequest;
-                message = exception.Message;
-                errorCode = "BAD_REQUEST";
-                break;
-
             case ArgumentException or InvalidOperationException:
                 statusCode = HttpStatusCode.BadRequest;
                 message = exception.Message;
-                errorCode = "INVALID_ARGUMENT";
                 break;
 
             default:
-                // Aquí puedes loguear el stacktrace si quieres más detalle
                 message = "Error interno en el servidor.";
-                errorCode = "INTERNAL_SERVER_ERROR";
                 break;
         }
 
@@ -59,8 +49,7 @@ public class ErrorHandlingMiddleware(RequestDelegate next, ILogger<ErrorHandling
             message: message,
             data: null
         );
-
-        // Opcional: agregar errorCode al JSON si lo quieres mostrar
+        
         var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
         var json = JsonSerializer.Serialize(response, options);
 
