@@ -1,5 +1,4 @@
-﻿using System;
-using PayPhoneApiChallenge.Domain.Wallets.Entities;
+﻿using PayPhoneApiChallenge.Domain.Wallets.Entities;
 
 namespace PayPhoneApiChallenge.Domain.Transactions.Entities
 {
@@ -7,19 +6,18 @@ namespace PayPhoneApiChallenge.Domain.Transactions.Entities
     {
         public int Id { get; set; }
 
-        public int SenderWalletId { get; set; }  // add Control
-        public int ReceiverWalletId { get; set; }  // add Control
+        public int FromWalletId { get; set; } // Relación
+        public int ToWalletId { get; set; } // Relación
 
-        public decimal Amount { get; set; } 
+        public decimal Amount { get; set; }
 
-        public TransactionType Type { get; set; }  
+        public TransactionType Type { get; set; }
 
-        public DateTime CreatedAt { get; set; }  
-        public DateTime UpdatedAt { get; set; }  
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
-        // Propiedades de navegación
-        public Wallet SenderWallet { get; set; }
-        public Wallet ReceiverWallet { get; set; }
-
+        // Referenciaa
+        public Wallet ToWallet { get; set; }
+        public Wallet FromWallet { get; set; }
     }
 }

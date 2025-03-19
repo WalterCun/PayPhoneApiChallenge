@@ -1244,7 +1244,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "PayPhoneApiChallenge.Domain": "1.0.0"
+          "PayPhoneApiChallenge.Domain": "1.0.0",
+          "PayPhoneApiChallenge.Infra": "1.0.0"
         },
         "compile": {
           "bin/placeholder/PayPhoneApiChallenge.App.dll": {}

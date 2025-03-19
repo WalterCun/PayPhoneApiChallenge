@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PayPhoneApiChallenge.Domain\PayPhoneApiChallenge.Domain.csproj" />
+    <ProjectReference Include="..\PayPhoneApiChallenge.Infra\PayPhoneApiChallenge.Infra.csproj" />
   </ItemGroup>
 
 </Project>

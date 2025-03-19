@@ -5,36 +5,40 @@ using PayPhoneApiChallenge.Domain.Wallets.Entities;
 
 namespace PayPhoneApiChallenge.Infra.Persistence
 {
-public class dbContext : DbContext { 
-    public dbContext(DbContextOptions<dbContext> options) : base(options) { }
-
+public class PayPhoneDbContext(DbContextOptions<PayPhoneDbContext> options) : DbContext(options)
+{
     public DbSet<Wallet> Wallets { get; set; }
     public DbSet<Transaction> Transactions { get; set; }
 
     public override int SaveChanges()
     {
         var entries = ChangeTracker.Entries()
-        .Where(e => (e.Entity is Wallet || e.Entity is Transaction) && (e.State == EntityState.Added || e.State == EntityState.Modified));
+        .Where(e => e.Entity is Wallet or Transaction && e.State is EntityState.Added or EntityState.Modified);
 
         foreach (var entry in entries)
         {
-                var now = DateTime.UtcNow;
+            var now = DateTime.UtcNow;
 
-                if (entry.Entity is Wallet wallet)
+            switch (entry.Entity)
+            {
+                case Wallet wallet:
                 {
                     if (entry.State == EntityState.Added)
                         wallet.CreatedAt = now;
 
                     wallet.UpdatedAt = now;
+                    break;
                 }
-                else if (entry.Entity is Transaction transaction)
+                case Transaction transaction:
                 {
                     if (entry.State == EntityState.Added)
                         transaction.CreatedAt = now;
 
                     transaction.UpdatedAt = now;
+                    break;
                 }
             }
+        }
 
         return base.SaveChanges();
     }
@@ -42,15 +46,15 @@ public class dbContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Transaction>()
-             .HasOne(t => t.SenderWallet)
-             .WithMany(w => w.TransactionsSent)
-             .HasForeignKey(t => t.SenderWalletId)
-             .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(t => t.FromWallet)
+            .WithMany(w => w.TransactionsSent)
+            .HasForeignKey(t => t.FromWalletId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Transaction>()
-            .HasOne(t => t.ReceiverWallet)
+            .HasOne(t => t.ToWallet)
             .WithMany(w => w.TransactionsReceived)
-            .HasForeignKey(t => t.ReceiverWalletId)
+            .HasForeignKey(t => t.ToWalletId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 

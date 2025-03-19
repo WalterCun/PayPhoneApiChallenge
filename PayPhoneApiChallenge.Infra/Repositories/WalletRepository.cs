@@ -8,9 +8,9 @@ namespace PayPhoneApiChallenge.Infra.Repositories;
 
 public class WalletRepository : IWalletRepository
 { 
-    private readonly dbContext _context;
+    private readonly PayPhoneDbContext _context;
 
-    public WalletRepository(dbContext context)
+    public WalletRepository(PayPhoneDbContext context)
     {
         _context = context;
     }

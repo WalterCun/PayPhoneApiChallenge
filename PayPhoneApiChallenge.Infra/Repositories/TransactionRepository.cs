@@ -10,9 +10,9 @@ namespace PayPhoneApiChallenge.Infra.Repositories;
 
 public class TransactionRepository: ITransactionRepository
 {
-    private readonly dbContext _context;
+    private readonly PayPhoneDbContext _context;
 
-    public TransactionRepository(dbContext context)
+    public TransactionRepository(PayPhoneDbContext context)
     {
         _context = context;
     }
@@ -26,16 +26,16 @@ public class TransactionRepository: ITransactionRepository
     public async Task<IEnumerable<Transaction>> GetAllAsync()
     {
         return await _context.Transactions
-            .Include(t => t.SenderWallet)
-            .Include(t => t.ReceiverWallet)
+            .Include(t => t.FromWallet)
+            .Include(t => t.ToWallet)
             .ToListAsync();
     }
 
     public async Task<Transaction> GetTransactionById(int id)
     {
         return await _context.Transactions
-            .Include(t => t.SenderWallet)
-            .Include(t => t.ReceiverWallet)
+            .Include(t => t.FromWallet)
+            .Include(t => t.ToWallet)
             .FirstOrDefaultAsync(t => t.Id == id);
     }
 }

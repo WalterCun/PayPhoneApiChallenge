@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PayPhoneApiChallenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94cbacd579b0e3220caecd5167d016bd96c47bfc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d71389ffd2ffbec619cd0d2e808032ab4f0a3dc2")]
 [assembly: System.Reflection.AssemblyProductAttribute("PayPhoneApiChallenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PayPhoneApiChallenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -34,6 +34,9 @@
             "projectReferences": {
               "D:\\Coders\\PayPhoneApiChallenge\\PayPhoneApiChallenge.Domain\\PayPhoneApiChallenge.Domain.csproj": {
                 "projectPath": "D:\\Coders\\PayPhoneApiChallenge\\PayPhoneApiChallenge.Domain\\PayPhoneApiChallenge.Domain.csproj"
+              },
+              "D:\\Coders\\PayPhoneApiChallenge\\PayPhoneApiChallenge.Infra\\PayPhoneApiChallenge.Infra.csproj": {
+                "projectPath": "D:\\Coders\\PayPhoneApiChallenge\\PayPhoneApiChallenge.Infra\\PayPhoneApiChallenge.Infra.csproj"
               }
             }
           }
