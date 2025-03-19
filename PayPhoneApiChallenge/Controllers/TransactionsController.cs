@@ -2,6 +2,7 @@
 using PayPhoneApiChallenge.App.Transactions.DTOs;
 using PayPhoneApiChallenge.App.Transactions.Services;
 
+    
 namespace PayPhoneApiChallenge.Controllers;
 
 [ApiController]
@@ -9,6 +10,7 @@ namespace PayPhoneApiChallenge.Controllers;
 public class TransactionsController(TransactionService transactionsService) : ControllerBase
 {
     [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<TransactionDto>), 200)]
     public async Task<ActionResult<IEnumerable<TransactionDto>>> GetTransactions()
     {
         var transactions = await transactionsService.GetAllAsync();
@@ -17,9 +19,14 @@ public class TransactionsController(TransactionService transactionsService) : Co
 
     // POST: api/Transaction
     [HttpPost]
+    [ProducesResponseType(typeof(TransactionDto), 201)]
+    [ProducesResponseType(400)]
     public async Task<ActionResult<TransactionDto>> CreateTransaction(
         [FromBody] CreateTransactionDto transactionDto)
     {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState); // Devuelve los errores de validación al cliente
+        
         try
         {
             var createdTransaction = await transactionsService.CreateAsync(transactionDto);

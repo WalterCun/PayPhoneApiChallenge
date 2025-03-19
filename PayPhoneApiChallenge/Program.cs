@@ -6,6 +6,7 @@ using PayPhoneApiChallenge.App.Transactions.Interfaces;
 using PayPhoneApiChallenge.App.Transactions.Services;
 using PayPhoneApiChallenge.App.Wallets.Interfaces;
 using PayPhoneApiChallenge.App.Wallets.Services;
+using PayPhoneApiChallenge.Milddlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -19,12 +20,12 @@ builder.Services.AddDbContext<PayPhoneDbContext>(options => options.UseSqlite(co
 // Add Services
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "PayPhone Api Challenge", Version = "v1" });
-});
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Controlar Errores Centralizados
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
