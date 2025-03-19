@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPhoneApiChallenge", "PayPhoneApiChallenge\PayPhoneApiChallenge.csproj", "{6A516543-F062-B228-F705-103183E69DAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPhoneApiChallenge.App", "PayPhoneApiChallenge.App\PayPhoneApiChallenge.App.csproj", "{D6D10658-E553-036D-ED62-1679F9660ED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPhoneApiChallenge.Domain", "PayPhoneApiChallenge.Domain\PayPhoneApiChallenge.Domain.csproj", "{E7BE25B4-286F-F738-F79C-033F11E63699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPhoneApiChallenge.Infra", "PayPhoneApiChallenge.Infra\PayPhoneApiChallenge.Infra.csproj", "{CB55D082-1FBF-96EC-C62C-6F6B2194A217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPhoneApiChallenge.Test", "PayPhoneApiChallenge.Test\PayPhoneApiChallenge.Test.csproj", "{5DECCE60-FDE9-EC33-CB8A-624A0BE3F3B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A516543-F062-B228-F705-103183E69DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A516543-F062-B228-F705-103183E69DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A516543-F062-B228-F705-103183E69DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A516543-F062-B228-F705-103183E69DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6D10658-E553-036D-ED62-1679F9660ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6D10658-E553-036D-ED62-1679F9660ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6D10658-E553-036D-ED62-1679F9660ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6D10658-E553-036D-ED62-1679F9660ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7BE25B4-286F-F738-F79C-033F11E63699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7BE25B4-286F-F738-F79C-033F11E63699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7BE25B4-286F-F738-F79C-033F11E63699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7BE25B4-286F-F738-F79C-033F11E63699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB55D082-1FBF-96EC-C62C-6F6B2194A217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB55D082-1FBF-96EC-C62C-6F6B2194A217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB55D082-1FBF-96EC-C62C-6F6B2194A217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB55D082-1FBF-96EC-C62C-6F6B2194A217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DECCE60-FDE9-EC33-CB8A-624A0BE3F3B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DECCE60-FDE9-EC33-CB8A-624A0BE3F3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DECCE60-FDE9-EC33-CB8A-624A0BE3F3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DECCE60-FDE9-EC33-CB8A-624A0BE3F3B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD9C891F-EEE7-4632-B3A3-CC9204AC8870}
+	EndGlobalSection
+EndGlobal
