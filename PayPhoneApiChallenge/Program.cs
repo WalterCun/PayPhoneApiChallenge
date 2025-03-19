@@ -37,9 +37,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-app.UseAuthentication();
+app.UseAuthentication(); 
 
 app.MapControllers();
 app.Run();
+
+// Pruebas Integrales
+public partial class Program { }

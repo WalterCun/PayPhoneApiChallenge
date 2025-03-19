@@ -24,6 +24,8 @@ public class WalletsController(IWalletService walletService) : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(WalletDto), 201)]
+    [ProducesResponseType(400)]
     public async Task<IActionResult> Create([FromBody] CreateWalletDto dto)
     {
         var created = await walletService.CreateAsync(dto);
