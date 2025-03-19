@@ -10,38 +10,53 @@ public class TransactionService(PayPhoneDbContext context) : ITransactionsServic
 {
     private async Task<TransactionDto> ProcessTransactionAsync(CreateTransactionDto dto)
     {
-        var senderWallet = await context.Wallets.FindAsync(dto.ToWalletId);
-        var receiverWallet = await context.Wallets.FindAsync(dto.FromWalletId);
+        // Validaciones de los datos de entrada
+        if (dto.Amount <= 0)
+            throw new ArgumentException("El monto debe ser mayor que 0.");
 
+        if (dto.FromWalletId <= 0 || dto.ToWalletId <= 0)
+            throw new ArgumentException("Los ID de billetera son obligatorios y deben ser mayores que 0.");
+
+        // Buscar las billeteras en la base de datos
+        var senderWallet = await context.Wallets.FindAsync(dto.FromWalletId);
+        var receiverWallet = await context.Wallets.FindAsync(dto.ToWalletId);
+
+        // Validaciones si las billeteras existen
         if (senderWallet == null || receiverWallet == null)
-            throw new InvalidOperationException("Wallet not found.");
+            throw new InvalidOperationException("Una o ambas billeteras no existen.");
 
+        // Validación si la billetera de origen tiene suficiente saldo
         if (senderWallet.Balance < dto.Amount)
-            throw new InvalidOperationException("Insufficient funds.");
+            throw new InvalidOperationException("Saldo insuficiente en la billetera de origen.");
 
+        // Realizar la transferencia: Restar de la billetera de origen y sumar a la billetera de destino
         senderWallet.Balance -= dto.Amount;
         receiverWallet.Balance += dto.Amount;
 
+        // Crear la transacción
         var transaction = new Transaction
         {
-            ToWalletId = dto.ToWalletId,
             FromWalletId = dto.FromWalletId,
+            ToWalletId = dto.ToWalletId,
             Amount = dto.Amount,
             CreatedAt = DateTime.UtcNow
         };
 
+        // Agregar la transacción al contexto y guardar los cambios
         context.Transactions.Add(transaction);
         await context.SaveChangesAsync();
 
+        // Retornar la DTO de la transacción creada
         return new TransactionDto
         {
             Id = transaction.Id,
-            ToWalletId = transaction.ToWalletId,
             FromWalletId = transaction.FromWalletId,
+            ToWalletId = transaction.ToWalletId,
             Amount = transaction.Amount,
             CreatedAt = transaction.CreatedAt
         };
     }
+
     public async Task<TransactionDto> CreateAsync(CreateTransactionDto dto)
     {
         var providerName = context.Database.ProviderName;
@@ -51,12 +66,12 @@ public class TransactionService(PayPhoneDbContext context) : ITransactionsServic
             return await ProcessTransactionAsync(dto); // No usa transacción
         }
 
-        using var transaction = await context.Database.BeginTransactionAsync();
+        await using var transaction = await context.Database.BeginTransactionAsync();
         var result = await ProcessTransactionAsync(dto);
         await transaction.CommitAsync();
         return result;
     }
-    
+
     public async Task<IEnumerable<TransactionDto>> GetAllAsync()
     {
         return await context.Transactions
@@ -69,5 +84,4 @@ public class TransactionService(PayPhoneDbContext context) : ITransactionsServic
                 CreatedAt = t.CreatedAt
             }).ToListAsync();
     }
-
 }

@@ -6,17 +6,11 @@ using PayPhoneApiChallenge.Infra.Persistence;
 
 namespace PayPhoneApiChallenge.App.Wallets.Services;
 
-public class WalletService: IWalletService
+public class WalletService(PayPhoneDbContext payPhoneDbContext) : IWalletService
 {
-    private readonly PayPhoneDbContext _context;
-    
-    public WalletService(PayPhoneDbContext payPhoneDbContext)
-    {
-        _context = payPhoneDbContext;
-    }
     public async Task<IEnumerable<WalletDto>> GetAllAsync()
     {
-        return await _context.Wallets
+        return await payPhoneDbContext.Wallets
             .Select(w => new WalletDto
             {
                 Id = w.Id,
@@ -29,7 +23,7 @@ public class WalletService: IWalletService
     }
     public async Task<WalletDto> GetByIdAsync(int id)
     {
-        var wallet = await _context.Wallets.FindAsync(id);
+        var wallet = await payPhoneDbContext.Wallets.FindAsync(id);
         if (wallet == null) return null;
 
         return new WalletDto
@@ -53,8 +47,8 @@ public class WalletService: IWalletService
             UpdatedAt = DateTime.UtcNow
         };
 
-        _context.Wallets.Add(wallet);
-        await _context.SaveChangesAsync();
+        payPhoneDbContext.Wallets.Add(wallet);
+        await payPhoneDbContext.SaveChangesAsync();
 
         return new WalletDto
         {
@@ -68,14 +62,14 @@ public class WalletService: IWalletService
     }
     public async Task<WalletDto> UpdateAsync(int id, UpdateWalletDto dto)
     {
-        var wallet = await _context.Wallets.FindAsync(id);
+        var wallet = await payPhoneDbContext.Wallets.FindAsync(id);
         if (wallet == null) return null;
 
         wallet.Name = dto.Name;
         wallet.Balance = dto.Balance;
         wallet.UpdatedAt = DateTime.UtcNow;
 
-        await _context.SaveChangesAsync();
+        await payPhoneDbContext.SaveChangesAsync();
 
         return new WalletDto
         {
@@ -89,11 +83,11 @@ public class WalletService: IWalletService
     }
     public async Task<bool> DeleteAsync(int id)
     {
-        var wallet = await _context.Wallets.FindAsync(id);
+        var wallet = await payPhoneDbContext.Wallets.FindAsync(id);
         if (wallet == null) return false;
 
-        _context.Wallets.Remove(wallet);
-        await _context.SaveChangesAsync();
+        payPhoneDbContext.Wallets.Remove(wallet);
+        await payPhoneDbContext.SaveChangesAsync();
         return true;
     }
 }
