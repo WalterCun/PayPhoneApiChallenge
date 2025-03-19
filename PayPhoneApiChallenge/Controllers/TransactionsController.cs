@@ -1,15 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PayPhoneApiChallenge.App.Transactions.DTOs;
-using PayPhoneApiChallenge.App.Transactions.Services;
+using PayPhoneApiChallenge.App.Transactions.Interfaces;
 
     
 namespace PayPhoneApiChallenge.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TransactionsController(TransactionService transactionsService) : ControllerBase
+public class TransactionsController(ITransactionsService transactionsService) : ControllerBase
 {
     [HttpGet]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(IEnumerable<TransactionDto>), 200)]
     public async Task<ActionResult<IEnumerable<TransactionDto>>> GetTransactions()
     {
@@ -19,6 +21,7 @@ public class TransactionsController(TransactionService transactionsService) : Co
 
     // POST: api/Transaction
     [HttpPost]
+    [Authorize]
     [ProducesResponseType(typeof(TransactionDto), 201)]
     [ProducesResponseType(400)]
     public async Task<ActionResult<TransactionDto>> CreateTransaction(
